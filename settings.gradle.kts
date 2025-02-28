@@ -13,3 +13,4 @@ plugins {
 
 rootProject.name = "pandora"
 include("app")
+include("user-api")
