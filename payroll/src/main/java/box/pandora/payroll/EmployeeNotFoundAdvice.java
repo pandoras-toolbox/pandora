@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 class EmployeeNotFoundAdvice {
 
-	@ExceptionHandler(EmployeeNotFoundException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	String employeeNotFoundHandler(EmployeeNotFoundException e) {
-		return e.getMessage();
-	}
+    @ExceptionHandler(EmployeeNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    String employeeNotFoundHandler(EmployeeNotFoundException e) {
+        return e.getMessage();
+    }
 
 }

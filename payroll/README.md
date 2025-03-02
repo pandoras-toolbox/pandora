@@ -24,3 +24,7 @@ curl -v -X DELETE localhost:8080/employees/1
 curl -v http://localhost:8080/orders
 curl -v -X DELETE http://localhost:8080/orders/4/cancel
 ```
+
+## Documentation
+
+Access the API documentation with Swagger UI: http://localhost:8080/swagger-ui

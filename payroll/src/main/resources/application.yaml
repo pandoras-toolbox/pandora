@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: payroll
+# https://springdoc.org/properties.html
+springdoc:
+  writer-with-order-by-keys: true
