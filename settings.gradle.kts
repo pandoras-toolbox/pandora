@@ -13,3 +13,4 @@ plugins {
 
 rootProject.name = "pandora"
 include("payroll")
+include("payroll-api-test")
