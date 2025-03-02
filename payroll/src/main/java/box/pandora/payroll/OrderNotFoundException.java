@@ -2,8 +2,8 @@ package box.pandora.payroll;
 
 class OrderNotFoundException extends RuntimeException {
 
-	OrderNotFoundException(Long id) {
-		super("Could not find order " + id);
-	}
+    OrderNotFoundException(Long id) {
+        super("Could not find order %s".formatted(id));
+    }
 
 }
