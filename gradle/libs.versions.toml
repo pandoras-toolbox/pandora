@@ -2,8 +2,6 @@
 
 [versions]
 mockito = "5.15.2"
-spring = "3.4.3"
-springdoc = "2.8.5"
 
 [libraries]
 mockito = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
