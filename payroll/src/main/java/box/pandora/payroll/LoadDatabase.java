@@ -1,7 +1,7 @@
 package box.pandora.payroll;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 class LoadDatabase {
 
-    private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
+    private static final Logger LOGGER = LogManager.getRootLogger();
 
     @Bean
     CommandLineRunner initDatabase(EmployeeRepository employeeRepository, OrderRepository orderRepository) {
@@ -17,12 +17,12 @@ class LoadDatabase {
             employeeRepository.save(new Employee("Bilbo", "Baggins", "burglar"));
             employeeRepository.save(new Employee("Frodo", "Baggins", "thief"));
 
-            employeeRepository.findAll().forEach(employee -> log.info("Preloaded " + employee));
+            employeeRepository.findAll().forEach(employee -> LOGGER.info("Preloaded {}", employee));
 
             orderRepository.save(new Order("MacBook Pro", Status.COMPLETED));
             orderRepository.save(new Order("iPhone", Status.IN_PROGRESS));
 
-            orderRepository.findAll().forEach(order -> log.info("Preloaded " + order));
+            orderRepository.findAll().forEach(order -> LOGGER.info("Preloaded {}", order));
         };
     }
 

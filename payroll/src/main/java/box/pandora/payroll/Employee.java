@@ -3,17 +3,26 @@ package box.pandora.payroll;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotEmpty;
+import org.springframework.data.annotation.Immutable;
 
 import java.util.Objects;
 import java.util.StringJoiner;
 
 @Entity
+@Immutable
 class Employee {
 
-    private @Id
-    @GeneratedValue Long id;
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @NotEmpty(message = "first name is required")
     private String firstName;
+
+    @NotEmpty(message = "last name is required")
     private String lastName;
+
     private String role;
 
     Employee() {
@@ -30,7 +39,7 @@ class Employee {
     }
 
     public void setName(String name) {
-        String[] parts = name.split(" ");
+        var parts = name.split(" ");
         this.firstName = parts[0];
         this.lastName = parts[1];
     }
