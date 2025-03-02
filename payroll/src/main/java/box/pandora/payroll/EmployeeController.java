@@ -7,8 +7,6 @@ import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.stream.Collectors;
-
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
@@ -18,13 +16,10 @@ class EmployeeController {
     private final EmployeeRepository repository;
 
     private final EmployeeModelAssembler assembler;
-    private final OrderModelAssembler orderAssembler;
 
-    EmployeeController(EmployeeRepository repository, EmployeeModelAssembler assembler,
-                       OrderModelAssembler orderAssembler) {
+    EmployeeController(EmployeeRepository repository, EmployeeModelAssembler assembler) {
         this.repository = repository;
         this.assembler = assembler;
-        this.orderAssembler = orderAssembler;
     }
 
     @Operation(summary = "Get all employees")
@@ -32,8 +27,7 @@ class EmployeeController {
     CollectionModel<EntityModel<Employee>> all() {
         var employees = repository.findAll().stream()
                 .map(assembler::toModel)
-                .collect(Collectors.toList());
-
+                .toList();
         return CollectionModel.of(employees, linkTo(methodOn(EmployeeController.class).all()).withSelfRel());
     }
 
@@ -42,7 +36,6 @@ class EmployeeController {
     EntityModel<Employee> one(@PathVariable Long id) {
         var employee = repository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException(id));
-
         return assembler.toModel(employee);
     }
 
@@ -62,9 +55,7 @@ class EmployeeController {
                     employee.setRole(newEmployee.getRole());
                     return repository.save(employee);
                 })
-                .orElseGet(() -> {
-                    return repository.save(newEmployee);
-                });
+                .orElseGet(() -> repository.save(newEmployee));
         var entityModel = assembler.toModel(updatedEmployee);
         return ResponseEntity.created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()).body(entityModel);
     }

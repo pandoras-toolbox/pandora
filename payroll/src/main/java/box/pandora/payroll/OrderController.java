@@ -10,28 +10,26 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.stream.Collectors;
-
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 class OrderController {
 
-    private final OrderRepository orderRepository;
+    private final OrderRepository repository;
     private final OrderModelAssembler assembler;
 
-    OrderController(OrderRepository orderRepository, OrderModelAssembler assembler) {
-        this.orderRepository = orderRepository;
+    OrderController(OrderRepository repository, OrderModelAssembler assembler) {
+        this.repository = repository;
         this.assembler = assembler;
     }
 
     @Operation(summary = "Get all orders")
     @GetMapping("/orders")
     CollectionModel<EntityModel<Order>> all() {
-        var orders = orderRepository.findAll().stream()
+        var orders = repository.findAll().stream()
                 .map(assembler::toModel)
-                .collect(Collectors.toList());
+                .toList();
         return CollectionModel.of(orders,
                 linkTo(methodOn(OrderController.class).all()).withSelfRel());
     }
@@ -39,7 +37,7 @@ class OrderController {
     @Operation(summary = "Get order by ID")
     @GetMapping("/orders/{id}")
     EntityModel<Order> one(@PathVariable Long id) {
-        var order = orderRepository.findById(id)
+        var order = repository.findById(id)
                 .orElseThrow(() -> new OrderNotFoundException(id));
         return assembler.toModel(order);
     }
@@ -48,7 +46,7 @@ class OrderController {
     @PostMapping("/orders")
     ResponseEntity<EntityModel<Order>> newOrder(@RequestBody Order order) {
         order.setStatus(Status.IN_PROGRESS);
-        var newOrder = orderRepository.save(order);
+        var newOrder = repository.save(order);
         return ResponseEntity
                 .created(linkTo(methodOn(OrderController.class).one(newOrder.getId())).toUri())
                 .body(assembler.toModel(newOrder));
@@ -57,12 +55,12 @@ class OrderController {
     @Operation(summary = "Complete order by ID")
     @PutMapping("/orders/{id}/complete")
     ResponseEntity<?> complete(@PathVariable Long id) {
-        var order = orderRepository.findById(id)
+        var order = repository.findById(id)
                 .orElseThrow(() -> new OrderNotFoundException(id));
 
         if (order.getStatus() == Status.IN_PROGRESS) {
             order.setStatus(Status.COMPLETED);
-            return ResponseEntity.ok(assembler.toModel(orderRepository.save(order)));
+            return ResponseEntity.ok(assembler.toModel(repository.save(order)));
         }
 
         return ResponseEntity
@@ -77,12 +75,12 @@ class OrderController {
     @Operation(summary = "Cancel order by ID")
     @DeleteMapping("/orders/{id}/cancel")
     ResponseEntity<?> cancel(@PathVariable Long id) {
-        var order = orderRepository.findById(id)
+        var order = repository.findById(id)
                 .orElseThrow(() -> new OrderNotFoundException(id));
 
         if (order.getStatus() == Status.IN_PROGRESS) {
             order.setStatus(Status.CANCELLED);
-            return ResponseEntity.ok(assembler.toModel(orderRepository.save(order)));
+            return ResponseEntity.ok(assembler.toModel(repository.save(order)));
         }
 
         return ResponseEntity

@@ -4,18 +4,25 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.data.annotation.Immutable;
 
 import java.util.Objects;
 import java.util.StringJoiner;
 
+@Immutable
 @Entity
+// Because "order" is a reserved keyword in SQL:
 @Table(name = "CUSTOMER_ORDER")
 class Order {
 
-    private @Id
-    @GeneratedValue Long id;
+    @Id
+    @GeneratedValue
+    private Long id;
 
     private String description;
+
+    @NotNull(message = "status name is required")
     private Status status;
 
     Order() {
