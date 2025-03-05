@@ -27,4 +27,4 @@ curl -v -X DELETE http://localhost:8080/orders/4/cancel
 
 ## Documentation
 
-Access the API documentation with Swagger UI: http://localhost:8080/swagger-ui
+Access the API documentation with Swagger UI: http://localhost:8080/swagger-ui/index.html

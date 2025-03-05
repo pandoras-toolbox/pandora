@@ -1,5 +1,7 @@
-package box.pandora.payroll_api_test.core;
+package box.pandora.functional_test.rest;
 
+import box.pandora.functional_test.ApiException;
+import box.pandora.functional_test.ImmutablesStyle;
 import okhttp3.Response;
 import org.immutables.builder.Builder;
 import org.immutables.value.Value;

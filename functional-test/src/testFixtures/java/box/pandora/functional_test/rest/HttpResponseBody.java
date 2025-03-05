@@ -1,5 +1,6 @@
-package box.pandora.payroll_api_test.core;
+package box.pandora.functional_test.rest;
 
+import box.pandora.functional_test.ImmutablesStyle;
 import com.google.common.base.MoreObjects;
 import okhttp3.MediaType;
 import org.apache.commons.lang3.StringUtils;

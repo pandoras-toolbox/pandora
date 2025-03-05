@@ -1,0 +1,6 @@
+<aspectj>
+    <weaver options="-warn:none -Xlint:ignore"/>
+    <aspects>
+        <aspect name="box.pandora.functional_test.StepLoggingAspect"/>
+    </aspects>
+</aspectj>

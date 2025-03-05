@@ -1,4 +1,4 @@
-package box.pandora.payroll_api_test.core;
+package box.pandora.functional_test;
 
 import org.immutables.value.Value;
 

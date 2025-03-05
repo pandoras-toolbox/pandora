@@ -1,3 +1,5 @@
+import box.pandora.Version
+
 plugins {
     java
     id("org.springframework.boot") version "3.4.3"
@@ -7,7 +9,7 @@ plugins {
 }
 
 group = "box.pandora"
-version = "0.0.1-SNAPSHOT"
+version = Version.PANDORA
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
