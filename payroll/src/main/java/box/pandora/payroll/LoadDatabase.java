@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 class LoadDatabase {
 
-    private static final Logger LOGGER = LogManager.getRootLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
     @Bean
     CommandLineRunner initDatabase(EmployeeRepository employeeRepository, OrderRepository orderRepository) {

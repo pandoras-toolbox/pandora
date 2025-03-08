@@ -25,7 +25,7 @@ class Order {
     @NotNull(message = "status name is required")
     private Status status;
 
-    Order() {
+    public Order() {
     }
 
     Order(String description, Status status) {

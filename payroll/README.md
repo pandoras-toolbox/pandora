@@ -15,7 +15,7 @@ How to run the app:
 
 When the app starts, you can immediately interact with it, as follows:
 
-```
+```shell
 curl -v localhost:8080/employees
 curl -v localhost:8080/employees/99
 curl -v -X POST localhost:8080/employees -H 'Content-Type:application/json' -d '{"name": "Samwise Gamgee", "role": "gardener"}'
