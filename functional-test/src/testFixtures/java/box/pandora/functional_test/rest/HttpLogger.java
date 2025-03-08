@@ -1,5 +1,7 @@
 package box.pandora.functional_test.rest;
 
+import box.pandora.core.config.LoggingConfig;
+import box.pandora.core.config.OkHttpConfig;
 import io.qameta.allure.Allure;
 import okhttp3.logging.HttpLoggingInterceptor;
 import org.apache.commons.io.FileUtils;
@@ -19,13 +21,6 @@ import java.util.List;
 public final class HttpLogger implements HttpLoggingInterceptor.Logger {
 
     private static final Logger LOGGER = LogManager.getLogger();
-
-    // TODO Replace hard-coded values.
-    private static final int PAYLOAD_MAXIMUM_LENGTH_REQUEST = 6250;
-    private static final int PAYLOAD_MAXIMUM_LENGTH_RESPONSE = 6250;
-    private static final int LOGGING_MAXIMUM_LENGTH_REQUEST = 1597;
-    private static final int LOGGING_MAXIMUM_LENGTH_RESPONSE = 2584;
-    private static final String ABBREVIATION_MARKER = "...";
 
     private final StringBuffer request = new StringBuffer();
     private final StringBuffer prettyRequest = new StringBuffer();
@@ -79,7 +74,7 @@ public final class HttpLogger implements HttpLoggingInterceptor.Logger {
     }
 
     private void appendRequest(String text) {
-        var effectiveText = determineEffectiveText(text, PAYLOAD_MAXIMUM_LENGTH_REQUEST);
+        var effectiveText = determineEffectiveText(text, OkHttpConfig.payloadMaximumLengthRequest());
         if (prettyLogging) {
             prettyRequest.append(effectiveText);
             prettyRequest.append(System.lineSeparator());
@@ -90,7 +85,7 @@ public final class HttpLogger implements HttpLoggingInterceptor.Logger {
     }
 
     private void appendResponse(String text) {
-        var effectiveText = determineEffectiveText(text, PAYLOAD_MAXIMUM_LENGTH_RESPONSE);
+        var effectiveText = determineEffectiveText(text, OkHttpConfig.payloadMaximumLengthResponse());
         if (prettyLogging) {
             prettyResponse.append(effectiveText);
             prettyResponse.append(System.lineSeparator());
@@ -112,15 +107,15 @@ public final class HttpLogger implements HttpLoggingInterceptor.Logger {
 
     private void log(InterceptorState state) {
         switch (state) {
-            case REQUEST_ENDED -> log("Request", request, prettyRequest, LOGGING_MAXIMUM_LENGTH_REQUEST);
-            case RESPONSE_ENDED -> log("Response", response, prettyResponse, LOGGING_MAXIMUM_LENGTH_RESPONSE);
+            case REQUEST_ENDED -> log("Request", request, prettyRequest, LoggingConfig.maximumLengthRequest());
+            case RESPONSE_ENDED -> log("Response", response, prettyResponse, LoggingConfig.maximumLengthResponse());
             default -> throw new IllegalStateException("Unsupported state: %s".formatted(state));
         }
     }
 
     private void log(String description, StringBuffer message, StringBuffer prettyMessage, int maximumLength) {
         var effectiveMessage = prettyLogging ? prettyMessage : message;
-        var abbreviatedMessage = StringUtils.abbreviate(effectiveMessage.toString(), ABBREVIATION_MARKER, maximumLength);
+        var abbreviatedMessage = StringUtils.abbreviate(effectiveMessage.toString(), LoggingConfig.abbreviationMarker(), maximumLength);
         LOGGER.info("{}:{}{}",
                 description, prettyLogging ? System.lineSeparator() : " ", abbreviatedMessage);
         Allure.addAttachment(description, prettyMessage.toString());

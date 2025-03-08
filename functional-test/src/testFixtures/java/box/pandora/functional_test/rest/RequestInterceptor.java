@@ -19,8 +19,6 @@ public final class RequestInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         var request = chain.request();
-        // TODO https://sws.atlassian.net/browse/SES-16629
-        // TODO https://sws.atlassian.net/browse/SES-16638
         try {
             return chain.proceed(request);
         } catch (IOException e) {

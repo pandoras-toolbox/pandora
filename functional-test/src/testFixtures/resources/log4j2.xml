@@ -3,11 +3,12 @@
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout
-                    pattern="%d{HH:mm:ss.SSS} [%tid] %highlight{%-5level}%X{testName}%logger{55} - %maxLen{%msg}{4181}%n%throwable"/>
+                    pattern="%d{HH:mm:ss.SSS} [%tid] %highlight{%-6level}%X{testName}%logger{55} - %maxLen{%msg}{4181}%n%throwable"/>
         </Console>
     </Appenders>
     <Loggers>
-        <Root level="debug">
+        <Logger name="org.apache.commons.beanutils" level="INFO"/>
+        <Root level="TRACE">
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>

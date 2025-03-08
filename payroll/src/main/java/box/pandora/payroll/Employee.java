@@ -25,7 +25,7 @@ class Employee {
 
     private String role;
 
-    Employee() {
+    public Employee() {
     }
 
     Employee(String firstName, String lastName, String role) {

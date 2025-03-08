@@ -1,5 +1,6 @@
 package box.pandora.functional_test.junit;
 
+import box.pandora.core.ThreadLocalsRegistry;
 import box.pandora.functional_test.BaseUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,6 +35,7 @@ public class BaseCallback implements BeforeEachCallback, AfterEachCallback {
         LOGGER.info("Test '{}' took {}",
                 JunitUtil.createTestName(context),
                 BaseUtil.formatDurationWords(Duration.ofMillis(System.currentTimeMillis() - getTestStartTime().orElseThrow().toEpochMilli())));
+        ThreadLocalsRegistry.remove();
     }
 
     public static Optional<Instant> getTestStartTime() {

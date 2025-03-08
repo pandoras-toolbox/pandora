@@ -1,5 +1,7 @@
 package box.pandora.functional_test;
 
+import box.pandora.core.config.AllureConfig;
+import box.pandora.core.config.LoggingConfig;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -15,9 +17,6 @@ import org.aspectj.lang.reflect.MethodSignature;
 public final class StepLoggingAspect {
 
     private static final Logger LOGGER = LogManager.getLogger();
-    // TODO Replace hard coded values below.
-    private static final String ABBREVIATION_MARKER = "...";
-    private static final int MAXIMUM_STRING_LENGTH = 5000;
 
     @Before("execution(* *(..)) && @annotation(io.qameta.allure.Step)")
     // Prevent SonarQube warning: "private" and "final" methods that don't access instance data should be "static"
@@ -52,8 +51,8 @@ public final class StepLoggingAspect {
                 stringBuilder.append("%s=%s".formatted(parameterNames[i],
                         args[i] == null ? args[i]
                                 : StringUtils.abbreviate(args[i].toString(),
-                                ABBREVIATION_MARKER,
-                                MAXIMUM_STRING_LENGTH)));
+                                LoggingConfig.abbreviationMarker(),
+                                AllureConfig.maximumToStringLength())));
                 if (i + 1 < parameterNames.length) {
                     stringBuilder.append(",");
                 } else {

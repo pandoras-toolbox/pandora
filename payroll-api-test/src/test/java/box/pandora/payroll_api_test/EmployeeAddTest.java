@@ -1,6 +1,5 @@
 package box.pandora.payroll_api_test;
 
-import box.pandora.functional_test.junit.BaseCallback;
 import box.pandora.payroll_api_test.client.OrderHttpClient;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -11,7 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Epic("Payroll")
-@ExtendWith(BaseCallback.class)
+@ExtendWith(PayrollApiTestCallback.class)
 final class EmployeeAddTest {
 
     @Feature("Employee")
