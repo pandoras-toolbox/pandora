@@ -14,6 +14,6 @@ plugins {
 rootProject.name = "pandora"
 include("common")
 include("functional-test")
-include("payroll")
-include("payroll-api-test")
-include("payroll-load-test")
+include("payroll-backend")
+include("payroll-test-gatling")
+include("payroll-test-okhttp")
