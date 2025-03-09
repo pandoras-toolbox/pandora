@@ -1,5 +1,7 @@
 # Payroll Backend
 
+**Status:** _10% complete_
+
 This is an example application with REST APIs to be used for test automation.
 
 It is copied initially from the module "links" of the Spring Boot example project

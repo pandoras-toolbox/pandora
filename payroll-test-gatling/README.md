@@ -1,5 +1,7 @@
 # Payroll Load Tests
 
+**Status:** _5% complete_
+
 ## Start Simulation(s)
 
 ```shell
