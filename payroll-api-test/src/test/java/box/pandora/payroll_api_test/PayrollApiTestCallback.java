@@ -22,7 +22,7 @@ public final class PayrollApiTestCallback extends BaseCallback implements Before
     private static Map<String, String> buildModuleSpecificProperties() {
         LOGGER.debug("Building module specific properties for Allure");
         return ImmutableMap.<String, String>builder()
-                .put("Stand", "local")
+                .put("Stand", "Local")
                 .build();
     }
 
