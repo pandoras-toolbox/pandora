@@ -6,15 +6,15 @@ This is a end-to-end test automation framework. Its approach is deliberately ver
 
 In this project there is an example application, one with REST APIs, but we will also create a frontend for it.
 
-The command-line commands will be explained for Linux and MacOS. If you are a Windows user we recommend that you
+The command-line commands will be explained for Linux and macOS. If you are a Windows user we recommend that you
 install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) and use it for this project.
 
 ## How to Use
 
 Please take a look at these sub-readmes:
 
-* [payroll-api-test](payroll-api-test/README.md)
-* [payroll-load-test](payroll-load-test/README.md)
+* [payroll-test-okhttp](payroll-test-okhttp/README.md)
+* [payroll-test-gatling](payroll-test-gatling/README.md)
 
 ## Purpose
 
