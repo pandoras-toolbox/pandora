@@ -13,7 +13,7 @@ repositories {
 }
 
 subprojects {
-    if (name != "payroll") {
+    if (name != "payroll" && !name.contains("load")) {
         apply(plugin = "java")
         apply(plugin = "io.qameta.allure")
 
@@ -51,7 +51,7 @@ subprojects {
             testLogging {
                 showStandardStreams = true
             }
-            
+
             useJUnitPlatform {
                 val includeTags = project.findProperty("includedTags")?.toString()?.split(",") ?: emptyList()
                 val excludeTags = project.findProperty("excludedTags")?.toString()?.split(",") ?: emptyList()

@@ -90,7 +90,7 @@ public final class JsonPathEvaluator {
 
     private static <T> void validateType(List<T> list, Class<T> expectedType, String jsonString) {
         if (!list.isEmpty()) {
-            var actualType = list.get(0).getClass();
+            var actualType = list.getFirst().getClass();
             if (!actualType.equals(expectedType)) {
                 throw new IllegalStateException("Expected type %s but was %s for JSON array: %s"
                         .formatted(expectedType.getName(), actualType.getName(), jsonString));

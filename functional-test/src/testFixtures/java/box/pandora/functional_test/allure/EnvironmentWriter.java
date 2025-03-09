@@ -22,7 +22,7 @@ public final class EnvironmentWriter {
     private EnvironmentWriter() {
     }
 
-    public static File writeAllureEnvironmentXml(Map<String, String> environmentValuesSet) {
+    public static void writeAllureEnvironmentXml(Map<String, String> environmentValuesSet) {
         try {
             var userDir = System.getProperty("user.dir");
             var allureResultsDir = new File("%s/build/allure-results".formatted(userDir));
@@ -60,7 +60,6 @@ public final class EnvironmentWriter {
             var xmlPath = environmentXmlFile.toPath();
             LOGGER.info("Saved content of {} is:{}{}",
                     xmlPath.getFileName(), System.lineSeparator(), Files.readString(xmlPath));
-            return environmentXmlFile;
         } catch (ParserConfigurationException | TransformerException | IOException e) {
             throw new IllegalStateException("Failed to write Allure environment file", e);
         }
