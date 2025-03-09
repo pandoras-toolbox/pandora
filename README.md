@@ -1,6 +1,6 @@
 # Pandora
 
-Project status: *early phase, work in progress*
+**Status:** _5% complete_
 
 This is a end-to-end test automation framework. Its approach is deliberately very programmatic in nature.
 
