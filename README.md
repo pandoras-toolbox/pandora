@@ -13,8 +13,9 @@ install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) and use it 
 
 Please take a look at these sub-readmes:
 
-* [payroll-test-okhttp](payroll-test-okhttp/README.md)
 * [payroll-test-gatling](payroll-test-gatling/README.md)
+* [payroll-test-okhttp](payroll-test-okhttp/README.md)
+* [payroll-test-playwright](payroll-test-playwright/README.md)
 
 ## Purpose
 
