@@ -3,11 +3,16 @@
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout
-                    pattern="%d{HH:mm:ss.SSS} [%tid] %highlight{%-6level}%X{testName}%logger{55} - %maxLen{%msg}{4181}%n%throwable"/>
+                    pattern="%d{HH:mm:ss.SSS} [%2tid] %highlight{%-6level}%X{testName}%logger{55} - %maxLen{%msg}{4181}%n%throwable"/>
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="org.apache.commons.beanutils" level="INFO"/>
+        <Logger name="java.lang" level="WARN"/>
+        <Logger name="javax.management" level="WARN"/>
+        <Logger name="jdk.event.security" level="WARN"/>
+        <Logger name="okhttp3.internal" level="WARN"/>
+        <Logger name="org.apache.commons" level="WARN"/>
+        <Logger name="org.junit" level="WARN"/>
         <Root level="DEBUG">
             <AppenderRef ref="Console"/>
         </Root>

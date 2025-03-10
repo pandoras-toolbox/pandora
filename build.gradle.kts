@@ -12,8 +12,12 @@ repositories {
     mavenCentral()
 }
 
+allprojects {
+    apply(plugin = "project-report")
+}
+
 subprojects {
-    if (name != "payroll" && !name.contains("load")) {
+    if (name != "payroll-backend" && name != "payroll-test-gatling") {
         apply(plugin = "java")
         apply(plugin = "io.qameta.allure")
 
@@ -32,9 +36,6 @@ subprojects {
 
         dependencies {
             testImplementation("org.apache.logging.log4j:log4j-core:${Version.LOG4J}")
-            testImplementation("org.slf4j:slf4j-simple:2.0.17") {
-                because("prevent: SLF4J(W): No SLF4J providers were found")
-            }
             testImplementation(platform("org.junit:junit-bom:${Version.JUNIT}"))
             testImplementation("org.junit.jupiter:junit-jupiter")
             testImplementation("io.qameta.allure:allure-java-commons:${Version.ALLURE}")
@@ -44,12 +45,24 @@ subprojects {
 
             testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
+            // Redirect other loggers through log4j2:
+            // https://logging.apache.org/log4j/2.x/manual/installation.html
+            runtimeOnly("org.apache.logging.log4j:log4j-slf4j2-impl:${Version.LOG4J}")
+            runtimeOnly("org.apache.logging.log4j:log4j-jcl:${Version.LOG4J}")
+            runtimeOnly("org.apache.logging.log4j:log4j-jul:${Version.LOG4J}")
+            runtimeOnly("org.apache.logging.log4j:log4j-jpl:${Version.LOG4J}")
+
             testAnnotationProcessor("org.immutables:value:${Version.IMMUTABLES}")
         }
 
         tasks.withType<Test> {
             testLogging {
                 showStandardStreams = true
+            }
+
+            tasks.withType<JavaExec> {
+                // https://logging.apache.org/log4j/2.x/manual/installation.html#impl-core-bridge-jul
+                systemProperty("java.util.logging.manager", "org.apache.logging.log4j.jul.LogManager")
             }
 
             useJUnitPlatform {
@@ -77,6 +90,9 @@ subprojects {
             systemProperty("junit.jupiter.execution.parallel.mode.default", cfg.modeDefault())
             systemProperty("junit.jupiter.execution.parallel.config.strategy", cfg.configStrategy())
             systemProperty("junit.jupiter.execution.parallel.config.fixed.parallelism", cfg.configFixedParallelism())
+
+            // https://logging.apache.org/log4j/2.x/manual/installation.html#impl-core-bridge-jul
+            systemProperty("java.util.logging.manager", "org.apache.logging.log4j.jul.LogManager")
         }
 
         allure {
