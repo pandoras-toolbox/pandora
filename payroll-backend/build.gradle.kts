@@ -22,6 +22,7 @@ repositories {
 
 configurations.all {
     // In order to replace SLF4J with log4j2:
+    // https://logging.apache.org/log4j/2.x/manual/installation.html#impl-core-bridge-jboss-logging
     exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
 }
 
@@ -35,6 +36,7 @@ dependencies {
     val springVersion = "3.4.3"
     implementation("org.springframework.boot:spring-boot-starter:$springVersion")
     implementation("org.springframework.boot:spring-boot-starter-log4j2:$springVersion") {
+        // https://logging.apache.org/log4j/2.x/manual/installation.html#impl-core-bridge-jboss-logging
         because("replace SLF4J with log4j2")
     }
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springVersion")
@@ -46,12 +48,7 @@ dependencies {
         because("https://www.baeldung.com/spring-rest-openapi-documentation#settingupwithspringwebflux")
     }
 
-    testImplementation(libs.mockito)
-    testImplementation("org.springframework.boot:spring-boot-starter-test:$springVersion")
-
     runtimeOnly("com.h2database:h2:2.3.232")
-
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.12.0")
 }
 
 // https://github.com/springdoc/springdoc-openapi-gradle-plugin?tab=readme-ov-file#customization
