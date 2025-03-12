@@ -1,7 +1,7 @@
 package box.pandora.functional_test.rest;
 
-import box.pandora.core.config.LoggingConfig;
-import box.pandora.core.config.OkHttpConfig;
+import box.pandora.common.config.LoggingConfig;
+import box.pandora.common.config.OkHttpConfig;
 import io.qameta.allure.Allure;
 import okhttp3.logging.HttpLoggingInterceptor;
 import org.apache.commons.io.FileUtils;

@@ -1,5 +1,6 @@
 package box.pandora.functional_test.rest;
 
+import box.pandora.common.IgnoredByArchUnit;
 import io.qameta.allure.Allure;
 import okhttp3.Interceptor;
 import okhttp3.RequestBody;
@@ -15,6 +16,7 @@ public final class RequestInterceptor implements Interceptor {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
+    @IgnoredByArchUnit(reason = "It would fail because no methods are allowed to return okhttp3.Response.")
     @NotNull
     @Override
     public Response intercept(Chain chain) throws IOException {

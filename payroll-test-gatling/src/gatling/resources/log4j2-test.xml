@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %highlight{%-6level} %logger{55} - %msg%n%throwable"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <!-- uncomment and set to DEBUG to log all failing HTTP requests -->
+        <!-- uncomment and set to TRACE to log all HTTP requests -->
+        <!-- <Logger name="io.gatling.http.engine.response" level="TRACE"/> -->
+        <!-- uncomment to log WebSocket events -->
+        <!-- <Logger name="io.gatling.http.action.ws.fsm" level="DEBUG"/> -->
+        <!-- uncomment to log SSE events -->
+        <!-- <Logger name="io.gatling.http.action.sse.fsm" level="DEBUG"/> -->
+        <Root level="WARN">
+            <AppenderRef ref="CONSOLE"/>
+        </Root>
+    </Loggers>
+</Configuration>

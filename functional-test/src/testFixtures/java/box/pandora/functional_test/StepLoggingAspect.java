@@ -1,7 +1,7 @@
 package box.pandora.functional_test;
 
-import box.pandora.core.config.AllureConfig;
-import box.pandora.core.config.LoggingConfig;
+import box.pandora.common.config.AllureConfig;
+import box.pandora.common.config.LoggingConfig;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;

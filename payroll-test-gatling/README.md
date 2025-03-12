@@ -27,7 +27,7 @@ The recorder is *not* very useful in practice. It can be started with:
 
 By default, logging of requests and responses is not enabled.
 
-The log output of Gatling can be configured in: [logback.xml](src/gatling/resources/logback.xml)
+The log output of Gatling can be configured in: [logback.xml](src/gatling/resources/log4j2-test.xml)
 
 ## Don't Mix Gatling & OkHttp
 

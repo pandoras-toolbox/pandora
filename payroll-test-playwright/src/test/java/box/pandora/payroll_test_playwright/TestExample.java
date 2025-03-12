@@ -1,6 +1,7 @@
 package box.pandora.payroll_test_playwright;
 
 import com.microsoft.playwright.*;
+import org.apache.logging.log4j.LogManager;
 import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,6 +25,7 @@ final class TestExample {
 
     @AfterAll
     static void afterAll() {
+        LogManager.getLogger().info("JUST TO TEST IF LOGGING WORKS IN THIS MODULE");
         playwright.close();
     }
 

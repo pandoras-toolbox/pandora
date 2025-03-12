@@ -1,4 +1,4 @@
-package box.pandora.core.config;
+package box.pandora.common.config;
 
 import org.apache.commons.configuration2.Configuration;
 
