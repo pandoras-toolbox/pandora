@@ -1,6 +1,6 @@
 package box.pandora.functional_test.junit;
 
-import box.pandora.core.ThreadLocalsRegistry;
+import box.pandora.common.ThreadLocalsRegistry;
 import box.pandora.functional_test.BaseUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

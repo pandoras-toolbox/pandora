@@ -1,6 +1,6 @@
-package box.pandora.core;
+package box.pandora.common;
 
-import box.pandora.core.config.LoggingConfig;
+import box.pandora.common.config.LoggingConfig;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;

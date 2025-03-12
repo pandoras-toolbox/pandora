@@ -1,6 +1,6 @@
 package box.pandora.functional_test;
 
-import box.pandora.core.JsonUtil;
+import box.pandora.common.JsonUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.jayway.jsonpath.DocumentContext;

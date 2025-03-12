@@ -26,6 +26,7 @@ configurations.all {
     exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
 }
 
+extra["scopeJUnit"] = "testImplementation"
 val mockitoAgent = configurations.create("mockitoAgent")
 // https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
 dependencies {
@@ -49,6 +50,9 @@ dependencies {
     }
 
     runtimeOnly("com.h2database:h2:2.3.232")
+
+    apply(from = rootProject.file("buildSrc/junit.gradle.kts"))
+    testImplementation("com.tngtech.archunit:archunit:${Version.ARCH_UNIT}")
 }
 
 // https://github.com/springdoc/springdoc-openapi-gradle-plugin?tab=readme-ov-file#customization

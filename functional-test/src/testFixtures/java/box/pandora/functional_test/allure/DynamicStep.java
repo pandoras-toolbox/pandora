@@ -1,7 +1,7 @@
 package box.pandora.functional_test.allure;
 
-import box.pandora.core.config.AllureConfig;
-import box.pandora.core.config.LoggingConfig;
+import box.pandora.common.config.AllureConfig;
+import box.pandora.common.config.LoggingConfig;
 import io.qameta.allure.Allure;
 import io.qameta.allure.model.Parameter;
 import io.qameta.allure.model.Status;

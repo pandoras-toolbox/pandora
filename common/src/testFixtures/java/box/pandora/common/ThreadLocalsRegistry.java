@@ -1,4 +1,4 @@
-package box.pandora.core;
+package box.pandora.common;
 
 import java.util.ArrayList;
 import java.util.List;

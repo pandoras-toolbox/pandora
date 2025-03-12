@@ -1,6 +1,6 @@
-package box.pandora.core.config;
+package box.pandora.common.config;
 
-import box.pandora.core.JsonUtil;
+import box.pandora.common.JsonUtil;
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.FileBasedConfiguration;
 import org.apache.commons.configuration2.PropertiesConfiguration;
