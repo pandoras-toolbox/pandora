@@ -6,6 +6,10 @@ plugins {
     id("com.github.ben-manes.versions") version "0.52.0"
 }
 
+tasks.wrapper {
+    gradleVersion = "8.13"
+}
+
 // Needed to define a repository for being able to create the Allure report:
 repositories {
     mavenCentral()
@@ -13,8 +17,10 @@ repositories {
 
 allprojects {
     apply(plugin = "project-report")
+    tasks.withType<JavaCompile>().configureEach {
+        options.encoding = "UTF-8"
+    }
 }
-
 
 subprojects {
     if (name != "payroll-backend" && name != "payroll-test-gatling") {
@@ -50,6 +56,16 @@ subprojects {
         tasks.withType<JavaExec> {
             // https://logging.apache.org/log4j/2.x/manual/installation.html#impl-core-bridge-jul
             systemProperty("java.util.logging.manager", "org.apache.logging.log4j.jul.LogManager")
+        }
+
+        allure {
+            adapter {
+                frameworks {
+                    junit5 {
+                        enabled.set(true)
+                    }
+                }
+            }
         }
     }
 }

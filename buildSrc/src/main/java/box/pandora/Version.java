@@ -10,7 +10,7 @@ public final class Version {
     public static final String GUAVA = "33.4.0-jre";
     public static final String IMMUTABLES = "2.10.1";
     public static final String JACKSON = "2.18.3";
-    public static final String JUNIT = "5.12.0";
+    public static final String JUNIT = "5.12.1";
     public static final String LOG4J = "2.24.3";
     public static final String PANDORA = "0.0.1-SNAPSHOT";
 

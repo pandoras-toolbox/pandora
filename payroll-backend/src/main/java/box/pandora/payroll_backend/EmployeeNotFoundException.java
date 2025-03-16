@@ -1,8 +1,10 @@
 package box.pandora.payroll_backend;
 
+import java.util.UUID;
+
 class EmployeeNotFoundException extends RuntimeException {
 
-    EmployeeNotFoundException(Long id) {
+    EmployeeNotFoundException(UUID id) {
         super("Could not find employee %s".formatted(id));
     }
 

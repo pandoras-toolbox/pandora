@@ -9,6 +9,10 @@ It is copied initially from the module "links" of the Spring Boot example projec
 
 There is also a [REST tutorial](https://spring.io/guides/tutorials/rest) from Spring Boot about it.
 
+What was changed:
+
+* add ability to set the ID (UUID) when creating new employees and orders, useful for testing
+
 How to run the app:
 
 ```shell
@@ -19,12 +23,13 @@ When the app starts, you can immediately interact with it, as follows:
 
 ```shell
 curl -v localhost:8080/employees
-curl -v localhost:8080/employees/99
+curl -v localhost:8080/employees/708d8087-9260-4034-949b-123fc6c2dd16
 curl -v -X POST localhost:8080/employees -H 'Content-Type:application/json' -d '{"name": "Samwise Gamgee", "role": "gardener"}'
-curl -v -X PUT localhost:8080/employees/3 -H 'Content-Type:application/json' -d '{"name": "Samwise Gamgee", "role": "ring bearer"}'
-curl -v -X DELETE localhost:8080/employees/1
-curl -v http://localhost:8080/orders
-curl -v -X DELETE http://localhost:8080/orders/4/cancel
+curl -v -X POST localhost:8080/employees -H 'Content-Type:application/json' -d '{"id": "43284f58-4b59-4c5f-8075-dc7d550e06de", "name": "Samwise Gamgee", "role": "gardener"}'
+curl -v -X PUT localhost:8080/employees/43284f58-4b59-4c5f-8075-dc7d550e06de -H 'Content-Type:application/json' -d '{"name": "Samwise Gamgee", "role": "ring bearer"}'
+curl -v -X DELETE localhost:8080/employees/708d8087-9260-4034-949b-123fc6c2dd16
+curl -v localhost:8080/orders
+curl -v -X DELETE http://localhost:8080/orders/f9f4b357-4611-44b8-9608-2e4b06ac2982/cancel
 ```
 
 ## Documentation

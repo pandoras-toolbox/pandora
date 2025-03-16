@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
@@ -36,7 +38,7 @@ class OrderController {
 
     @Operation(summary = "Get order by ID")
     @GetMapping("/orders/{id}")
-    EntityModel<Order> one(@PathVariable Long id) {
+    EntityModel<Order> one(@PathVariable UUID id) {
         var order = repository.findById(id)
                 .orElseThrow(() -> new OrderNotFoundException(id));
         return assembler.toModel(order);
@@ -45,6 +47,9 @@ class OrderController {
     @Operation(summary = "Create new order")
     @PostMapping("/orders")
     ResponseEntity<EntityModel<Order>> newOrder(@RequestBody Order order) {
+        if (order.getId() == null) {
+            order.setId(UUID.randomUUID());
+        }
         order.setStatus(Status.IN_PROGRESS);
         var newOrder = repository.save(order);
         return ResponseEntity
@@ -54,7 +59,7 @@ class OrderController {
 
     @Operation(summary = "Complete order by ID")
     @PutMapping("/orders/{id}/complete")
-    ResponseEntity<?> complete(@PathVariable Long id) {
+    ResponseEntity<?> complete(@PathVariable UUID id) {
         var order = repository.findById(id)
                 .orElseThrow(() -> new OrderNotFoundException(id));
 
@@ -74,7 +79,7 @@ class OrderController {
 
     @Operation(summary = "Cancel order by ID")
     @DeleteMapping("/orders/{id}/cancel")
-    ResponseEntity<?> cancel(@PathVariable Long id) {
+    ResponseEntity<?> cancel(@PathVariable UUID id) {
         var order = repository.findById(id)
                 .orElseThrow(() -> new OrderNotFoundException(id));
 

@@ -7,6 +7,8 @@ import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
@@ -33,7 +35,7 @@ class EmployeeController {
 
     @Operation(summary = "Get employee by ID")
     @GetMapping("/employees/{id}")
-    EntityModel<Employee> one(@PathVariable Long id) {
+    EntityModel<Employee> one(@PathVariable UUID id) {
         var employee = repository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException(id));
         return assembler.toModel(employee);
@@ -42,13 +44,16 @@ class EmployeeController {
     @Operation(summary = "Create new employee")
     @PostMapping("/employees")
     ResponseEntity<?> newEmployee(@RequestBody Employee newEmployee) {
+        if (newEmployee.getId() == null) {
+            newEmployee.setId(UUID.randomUUID());
+        }
         var entityModel = assembler.toModel(repository.save(newEmployee));
         return ResponseEntity.created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()).body(entityModel);
     }
 
     @Operation(summary = "Replace employee by ID")
     @PutMapping("/employees/{id}")
-    ResponseEntity<?> replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
+    ResponseEntity<?> replaceEmployee(@RequestBody Employee newEmployee, @PathVariable UUID id) {
         var updatedEmployee = repository.findById(id)
                 .map(employee -> {
                     employee.setName(newEmployee.getName());
@@ -62,7 +67,7 @@ class EmployeeController {
 
     @Operation(summary = "Delete employee by ID")
     @DeleteMapping("/employees/{id}")
-    ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
+    ResponseEntity<?> deleteEmployee(@PathVariable UUID id) {
         repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }

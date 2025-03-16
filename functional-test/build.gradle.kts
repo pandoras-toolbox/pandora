@@ -15,7 +15,6 @@ dependencies {
     testFixturesApi("com.squareup.okhttp3:logging-interceptor")
     testFixturesApi(testFixtures(project(":common")))
 
-    testFixturesImplementation("org.apache.logging.log4j:log4j-core:${Version.LOG4J}")
     testFixturesImplementation("io.qameta.allure:allure-java-commons:${Version.ALLURE}")
     testFixturesImplementation("io.qameta.allure:allure-assertj:${Version.ALLURE}")
     testFixturesImplementation("org.apache.commons:commons-lang3:${Version.COMMONS_LANG_3}")

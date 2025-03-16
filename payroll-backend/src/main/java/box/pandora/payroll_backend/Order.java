@@ -1,7 +1,6 @@
 package box.pandora.payroll_backend;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -9,6 +8,7 @@ import org.springframework.data.annotation.Immutable;
 
 import java.util.Objects;
 import java.util.StringJoiner;
+import java.util.UUID;
 
 @Immutable
 @Entity
@@ -17,8 +17,7 @@ import java.util.StringJoiner;
 class Order {
 
     @Id
-    @GeneratedValue
-    private Long id;
+    private UUID id;
 
     private String description;
 
@@ -29,28 +28,33 @@ class Order {
     }
 
     Order(String description, Status status) {
+        this(UUID.randomUUID(), description, status);
+    }
+
+    Order(UUID id, String description, Status status) {
+        this.id = id;
         this.description = description;
         this.status = status;
     }
 
-    public Long getId() {
-        return this.id;
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getDescription() {
-        return this.description;
-    }
-
-    public Status getStatus() {
-        return this.status;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     public void setStatus(Status status) {
@@ -64,14 +68,14 @@ class Order {
         } else if (!(o instanceof Order order)) {
             return false;
         } else {
-            return Objects.equals(this.id, order.id) && Objects.equals(this.description, order.description)
-                    && this.status == order.status;
+            return Objects.equals(id, order.id) && Objects.equals(description, order.description)
+                    && status == order.status;
         }
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.description, this.status);
+        return Objects.hash(id, description, status);
     }
 
     @Override
