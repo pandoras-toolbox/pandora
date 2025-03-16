@@ -6,17 +6,19 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;
-import io.qameta.allure.Step;
 import net.minidev.json.JSONArray;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
 
-import static box.pandora.functional_test.allure.DynamicStep.step;
-
 public final class JsonPathEvaluator {
+
+    private static final Logger LOGGER = LogManager.getLogger();
 
     private final DocumentContext documentContext;
 
@@ -49,6 +51,11 @@ public final class JsonPathEvaluator {
         return read(jsonPath, Double.class);
     }
 
+    @SuppressWarnings("rawtypes")
+    public List<LinkedHashMap> asArrayList(String jsonPath) {
+        return asList(jsonPath, LinkedHashMap.class);
+    }
+
     public List<String> asStringList(String jsonPath) {
         return asList(jsonPath, String.class);
     }
@@ -69,8 +76,8 @@ public final class JsonPathEvaluator {
         return asList(jsonPath, Double.class);
     }
 
-    @Step("select properties at JSON path {jsonPath}")
     public <T> List<T> asList(String jsonPath, Class<T> type) {
+        LOGGER.debug("Select properties at JSON path {}", jsonPath);
         var result = new ArrayList<T>();
         if (documentContext.read(jsonPath) instanceof JSONArray jsonArray) {
             try {
@@ -84,7 +91,7 @@ public final class JsonPathEvaluator {
                 throw new IllegalStateException("Failed to read JSON array: %s".formatted(jsonArray), e);
             }
         }
-        step("the selected properties are: %s".formatted(StringUtils.join(result, ", ")));
+        LOGGER.debug("The selected properties are: {}", StringUtils.join(result, ", "));
         return result;
     }
 
@@ -98,10 +105,10 @@ public final class JsonPathEvaluator {
         }
     }
 
-    @Step("select property at JSON path {jsonPath}")
     // Prevent SonarQube warning: Exception handlers should preserve the original exceptions
     @SuppressWarnings("java:S1166")
     private <T> Optional<T> read(String jsonPath, Class<T> type) {
+        LOGGER.debug("Select property at JSON path {}", jsonPath);
         Optional<T> result = Optional.empty();
         try {
             var read = documentContext.read(jsonPath);
@@ -110,9 +117,9 @@ public final class JsonPathEvaluator {
             // Exception can be ignored.
         }
         if (result.isEmpty()) {
-            step("the selected property is: null");
+            LOGGER.debug("The selected property is: null");
         } else {
-            step("the selected property is: %s".formatted(result.get()));
+            LOGGER.debug("the selected property is: {}", result.get());
         }
         return result;
     }

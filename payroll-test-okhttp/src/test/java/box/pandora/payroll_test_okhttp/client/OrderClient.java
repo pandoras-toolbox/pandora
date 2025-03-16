@@ -18,6 +18,25 @@ public final class OrderClient {
     }
 
     @Step
+    public static HttpResponse getEmployees() {
+        try (var response = RestUtil.createOkHttpClient().newCall(new Request.Builder()
+                        .url(new HttpUrl.Builder()
+                                .scheme("HTTP")
+                                .host("localhost")
+                                .port(8080)
+                                .addPathSegment("employees")
+                                .build())
+                        .header("Content-Type", "application/json")
+                        .get()
+                        .build())
+                .execute()) {
+            return HttpResponse.fromOkHttpResponse(response);
+        } catch (IOException e) {
+            throw new ApiException("Failed to get employees", e);
+        }
+    }
+
+    @Step
     public static HttpResponse getEmployee(UUID id) {
         try (var response = RestUtil.createOkHttpClient().newCall(new Request.Builder()
                         .url(new HttpUrl.Builder()
@@ -33,7 +52,7 @@ public final class OrderClient {
                 .execute()) {
             return HttpResponse.fromOkHttpResponse(response);
         } catch (IOException e) {
-            throw new ApiException("Failed to get employee with ID '%s'"
+            throw new ApiException("Failed to get employee by ID '%s'"
                     .formatted(id), e);
         }
     }
@@ -63,6 +82,27 @@ public final class OrderClient {
         } catch (IOException e) {
             throw new ApiException("Failed to add employee with name '%s' and role '%s'"
                     .formatted(name, role), e);
+        }
+    }
+
+    @Step
+    public static HttpResponse deleteEmployee(UUID id) {
+        try (var response = RestUtil.createOkHttpClient().newCall(new Request.Builder()
+                        .url(new HttpUrl.Builder()
+                                .scheme("HTTP")
+                                .host("localhost")
+                                .port(8080)
+                                .addPathSegment("employees")
+                                .addPathSegment(String.valueOf(id))
+                                .build())
+                        .header("Content-Type", "application/json")
+                        .delete()
+                        .build())
+                .execute()) {
+            return HttpResponse.fromOkHttpResponse(response);
+        } catch (IOException e) {
+            throw new ApiException("Failed to delete employee by ID '%s'"
+                    .formatted(id), e);
         }
     }
 
