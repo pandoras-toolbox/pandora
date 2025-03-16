@@ -16,7 +16,10 @@ configurations.all {
     exclude(group = "ch.qos.logback", module = "logback-classic")
 }
 
-extra["scopeJUnit"] = "gatlingImplementation"
+ext {
+    set("scopeJUnit", "gatlingImplementation")
+}
+
 dependencies {
     apply(from = rootProject.file("buildSrc/junit.gradle.kts"))
 

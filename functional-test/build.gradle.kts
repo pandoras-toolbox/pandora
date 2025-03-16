@@ -5,18 +5,21 @@ plugins {
     `java-test-fixtures`
 }
 
-extra["scopeImmutablesValueImplementation"] = "testFixturesImplementation"
-extra["scopeImmutablesValueAnnotationProcessor"] = "testFixturesAnnotationProcessor"
+ext {
+    set("scopeImmutablesValueImplementation", "testFixturesCompileOnly")
+    set("scopeImmutablesValueAnnotationProcessor", "testFixturesAnnotationProcessor")
+    set("scopeJUnit", "testFixturesApi")
+}
+
 dependencies {
     apply(from = rootProject.file("buildSrc/immutables.gradle.kts"))
+    apply(from = rootProject.file("buildSrc/junit.gradle.kts"))
 
+    testFixturesApi(testFixtures(project(":common")))
     testFixturesApi(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
     testFixturesApi("com.squareup.okhttp3:okhttp")
-    testFixturesApi("com.squareup.okhttp3:logging-interceptor")
-    testFixturesApi(testFixtures(project(":common")))
 
-    testFixturesImplementation("io.qameta.allure:allure-java-commons:${Version.ALLURE}")
-    testFixturesImplementation("io.qameta.allure:allure-assertj:${Version.ALLURE}")
+    testFixturesImplementation("com.squareup.okhttp3:logging-interceptor")
     testFixturesImplementation("org.apache.commons:commons-lang3:${Version.COMMONS_LANG_3}")
     testFixturesImplementation("com.google.guava:guava:${Version.GUAVA}")
     testFixturesImplementation("org.assertj:assertj-core:${Version.ASSERTJ}")
@@ -27,5 +30,6 @@ dependencies {
     testFixturesImplementation("com.fasterxml.jackson.core:jackson-databind:${Version.JACKSON}")
     val aspectjVersion = "1.9.23"
     testFixturesImplementation("org.aspectj:aspectjrt:$aspectjVersion")
-    testFixturesImplementation("org.aspectj:aspectjweaver:$aspectjVersion")
+
+    testFixturesRuntimeOnly("org.aspectj:aspectjweaver:$aspectjVersion")
 }

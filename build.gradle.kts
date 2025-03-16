@@ -40,17 +40,18 @@ subprojects {
         group = "box.pandora"
         version = Version.PANDORA
 
-        extra["scopeLog4jCore"] = "testImplementation"
-        extra["scopeLog4jBridge"] = "runtimeOnly"
-        extra["scopeImmutablesValueImplementation"] = "testImplementation"
-        extra["scopeImmutablesValueAnnotationProcessor"] = "testAnnotationProcessor"
+        ext {
+            set("scopeImmutablesValueImplementation", "testCompileOnly")
+            set("scopeImmutablesValueAnnotationProcessor", "testAnnotationProcessor")
+        }
+
         dependencies {
-            apply(from = rootProject.file("buildSrc/log4j.gradle.kts"))
             apply(from = rootProject.file("buildSrc/immutables.gradle.kts"))
 
-            testImplementation("io.qameta.allure:allure-java-commons:${Version.ALLURE}")
             testImplementation("io.qameta.allure:allure-assertj:${Version.ALLURE}")
             testImplementation("org.assertj:assertj-core:${Version.ASSERTJ}")
+
+            testRuntimeOnly("io.qameta.allure:allure-java-commons:${Version.ALLURE}")
         }
 
         tasks.withType<JavaExec> {

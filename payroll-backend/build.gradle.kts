@@ -26,14 +26,11 @@ configurations.all {
     exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
 }
 
-extra["scopeJUnit"] = "testImplementation"
-val mockitoAgent = configurations.create("mockitoAgent")
-// https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
-dependencies {
-    mockitoAgent(libs.mockito) {
-        isTransitive = false
-    }
+ext {
+    set("scopeJUnit", "testImplementation")
+}
 
+dependencies {
     val springVersion = "3.4.3"
     implementation("org.springframework.boot:spring-boot-starter:$springVersion")
     implementation("org.springframework.boot:spring-boot-starter-log4j2:$springVersion") {
@@ -64,7 +61,6 @@ openApi {
 tasks.withType<Test> {
     useJUnitPlatform()
     jvmArgs(
-        "-javaagent:${mockitoAgent.asPath}",
         // https://stackoverflow.com/a/77496400
         "-Xshare:off"
     )

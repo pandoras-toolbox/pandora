@@ -9,6 +9,8 @@
 plugins {
     // Apply the foojay-resolver plugin to allow automatic download of JDKs
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.9.0"
+    // https://github.com/autonomousapps/dependency-analysis-gradle-plugin
+    id("com.autonomousapps.build-health") version "2.12.0"
 }
 
 rootProject.name = "pandora"

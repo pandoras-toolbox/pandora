@@ -5,9 +5,12 @@ plugins {
     `java-test-fixtures`
 }
 
-extra["scopeLog4jCore"] = "testFixturesApi"
-extra["scopeLog4jBridge"] = "testFixturesRuntimeOnly"
-extra["scopeJUnit"] = "testFixturesApi"
+ext {
+    set("scopeLog4jCore", "testFixturesApi")
+    set("scopeLog4jBridge", "testFixturesRuntimeOnly")
+    set("scopeJUnit", "testImplementation")
+}
+
 dependencies {
     apply(from = rootProject.file("buildSrc/log4j.gradle.kts"))
     apply(from = rootProject.file("buildSrc/junit.gradle.kts"))
@@ -18,5 +21,7 @@ dependencies {
     testFixturesImplementation("com.fasterxml.jackson.core:jackson-annotations:${Version.JACKSON}")
     testFixturesImplementation("com.fasterxml.jackson.core:jackson-databind:${Version.JACKSON}")
     testFixturesImplementation("org.apache.commons:commons-jexl3:3.4.0")
-    testFixturesImplementation("commons-beanutils:commons-beanutils:1.10.1")
+
+    // TODO Needed?
+    testFixturesRuntimeOnly("commons-beanutils:commons-beanutils:1.10.1")
 }

@@ -1,4 +1,7 @@
-extra["scopeJUnit"] = "testImplementation"
+ext {
+    set("scopeJUnit", "testImplementation")
+}
+
 dependencies {
     apply(from = rootProject.file("buildSrc/junit.gradle.kts"))
     testImplementation(testFixtures(project(":functional-test")))
