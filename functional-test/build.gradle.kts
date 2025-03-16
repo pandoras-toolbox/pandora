@@ -25,7 +25,7 @@ dependencies {
     testFixturesImplementation("net.minidev:json-smart:2.5.2")
     testFixturesImplementation("com.fasterxml.jackson.core:jackson-core:${Version.JACKSON}")
     testFixturesImplementation("com.fasterxml.jackson.core:jackson-databind:${Version.JACKSON}")
-    val aspectjVersion = "1.9.22.1"
+    val aspectjVersion = "1.9.23"
     testFixturesImplementation("org.aspectj:aspectjrt:$aspectjVersion")
     testFixturesImplementation("org.aspectj:aspectjweaver:$aspectjVersion")
 }
