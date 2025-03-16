@@ -13,8 +13,8 @@ class RootController {
     @GetMapping
     RepresentationModel<?> index() {
         RepresentationModel<?> rootModel = new RepresentationModel<>();
-        rootModel.add(linkTo(methodOn(EmployeeController.class).all()).withRel("employees"));
-        rootModel.add(linkTo(methodOn(OrderController.class).all()).withRel("orders"));
+        rootModel.add(linkTo(methodOn(EmployeeController.class).getEmployees()).withRel("employees"));
+        rootModel.add(linkTo(methodOn(OrderController.class).getOrders()).withRel("orders"));
         return rootModel;
     }
 

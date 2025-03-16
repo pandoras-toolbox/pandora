@@ -26,16 +26,16 @@ class EmployeeController {
 
     @Operation(summary = "Get all employees")
     @GetMapping("/employees")
-    CollectionModel<EntityModel<Employee>> all() {
+    CollectionModel<EntityModel<Employee>> getEmployees() {
         var employees = repository.findAll().stream()
                 .map(assembler::toModel)
                 .toList();
-        return CollectionModel.of(employees, linkTo(methodOn(EmployeeController.class).all()).withSelfRel());
+        return CollectionModel.of(employees, linkTo(methodOn(EmployeeController.class).getEmployees()).withSelfRel());
     }
 
     @Operation(summary = "Get employee by ID")
     @GetMapping("/employees/{id}")
-    EntityModel<Employee> one(@PathVariable UUID id) {
+    EntityModel<Employee> getEmployee(@PathVariable UUID id) {
         var employee = repository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException(id));
         return assembler.toModel(employee);
@@ -43,7 +43,7 @@ class EmployeeController {
 
     @Operation(summary = "Create new employee")
     @PostMapping("/employees")
-    ResponseEntity<?> newEmployee(@RequestBody Employee newEmployee) {
+    ResponseEntity<?> createNewEmployee(@RequestBody Employee newEmployee) {
         if (newEmployee.getId() == null) {
             newEmployee.setId(UUID.randomUUID());
         }

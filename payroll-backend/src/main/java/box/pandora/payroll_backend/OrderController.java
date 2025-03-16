@@ -28,17 +28,17 @@ class OrderController {
 
     @Operation(summary = "Get all orders")
     @GetMapping("/orders")
-    CollectionModel<EntityModel<Order>> all() {
+    CollectionModel<EntityModel<Order>> getOrders() {
         var orders = repository.findAll().stream()
                 .map(assembler::toModel)
                 .toList();
         return CollectionModel.of(orders,
-                linkTo(methodOn(OrderController.class).all()).withSelfRel());
+                linkTo(methodOn(OrderController.class).getOrders()).withSelfRel());
     }
 
     @Operation(summary = "Get order by ID")
     @GetMapping("/orders/{id}")
-    EntityModel<Order> one(@PathVariable UUID id) {
+    EntityModel<Order> getOrder(@PathVariable UUID id) {
         var order = repository.findById(id)
                 .orElseThrow(() -> new OrderNotFoundException(id));
         return assembler.toModel(order);
@@ -46,20 +46,20 @@ class OrderController {
 
     @Operation(summary = "Create new order")
     @PostMapping("/orders")
-    ResponseEntity<EntityModel<Order>> newOrder(@RequestBody Order order) {
+    ResponseEntity<EntityModel<Order>> createNewOrder(@RequestBody Order order) {
         if (order.getId() == null) {
             order.setId(UUID.randomUUID());
         }
         order.setStatus(Status.IN_PROGRESS);
         var newOrder = repository.save(order);
         return ResponseEntity
-                .created(linkTo(methodOn(OrderController.class).one(newOrder.getId())).toUri())
+                .created(linkTo(methodOn(OrderController.class).getOrder(newOrder.getId())).toUri())
                 .body(assembler.toModel(newOrder));
     }
 
     @Operation(summary = "Complete order by ID")
     @PutMapping("/orders/{id}/complete")
-    ResponseEntity<?> complete(@PathVariable UUID id) {
+    ResponseEntity<?> completeOrder(@PathVariable UUID id) {
         var order = repository.findById(id)
                 .orElseThrow(() -> new OrderNotFoundException(id));
 
@@ -79,7 +79,7 @@ class OrderController {
 
     @Operation(summary = "Cancel order by ID")
     @DeleteMapping("/orders/{id}/cancel")
-    ResponseEntity<?> cancel(@PathVariable UUID id) {
+    ResponseEntity<?> cancelOrder(@PathVariable UUID id) {
         var order = repository.findById(id)
                 .orElseThrow(() -> new OrderNotFoundException(id));
 
