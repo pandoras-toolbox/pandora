@@ -6,6 +6,10 @@ ext {
     set("scopeJUnit", "testImplementation")
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     apply(from = rootProject.file("buildSrc/junit.gradle.kts"))
     apply(from = rootProject.file("buildSrc/allure.gradle.kts"))
