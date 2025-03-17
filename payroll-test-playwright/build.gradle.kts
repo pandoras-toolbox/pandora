@@ -4,12 +4,12 @@ plugins {
 
 ext {
     set("scopeJUnit", "testImplementation")
+    set("scopeJUnitPlatformLauncher", "testRuntimeOnly")
 }
 
 dependencies {
     apply(from = rootProject.file("buildSrc/junit.gradle.kts"))
     apply(from = rootProject.file("buildSrc/allure.gradle.kts"))
-    apply(plugin = "io.qameta.allure")
     testImplementation(testFixtures(project(":functional-test")))
     testImplementation("com.microsoft.playwright:playwright:1.50.0")
 }

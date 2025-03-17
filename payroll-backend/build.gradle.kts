@@ -15,6 +15,7 @@ configurations.all {
 
 ext {
     set("scopeJUnit", "testImplementation")
+    set("scopeJUnitPlatformLauncher", "testRuntimeOnly")
 }
 
 dependencies {

@@ -4,16 +4,12 @@ plugins {
 
 ext {
     set("scopeJUnit", "testImplementation")
-}
-
-repositories {
-    mavenCentral()
+    set("scopeJUnitPlatformLauncher", "testRuntimeOnly")
 }
 
 dependencies {
     apply(from = rootProject.file("buildSrc/junit.gradle.kts"))
     apply(from = rootProject.file("buildSrc/allure.gradle.kts"))
-    apply(plugin = "io.qameta.allure")
     testImplementation(testFixtures(project(":functional-test")))
 }
 

@@ -10,6 +10,7 @@ configurations.all {
 
 ext {
     set("scopeJUnit", "gatlingImplementation")
+    set("scopeJUnitPlatformLauncher", "gatlingRuntimeOnly")
 }
 
 dependencies {

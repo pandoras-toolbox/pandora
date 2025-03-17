@@ -9,6 +9,7 @@ ext {
     set("scopeLog4jCore", "testFixturesApi")
     set("scopeLog4jBridge", "testFixturesRuntimeOnly")
     set("scopeJUnit", "testImplementation")
+    set("scopeJUnitPlatformLauncher", "testRuntimeOnly")
 }
 
 dependencies {

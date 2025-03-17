@@ -9,6 +9,7 @@ ext {
     set("scopeImmutablesValueImplementation", "testFixturesCompileOnly")
     set("scopeImmutablesValueAnnotationProcessor", "testFixturesAnnotationProcessor")
     set("scopeJUnit", "testFixturesApi")
+    set("scopeJUnitPlatformLauncher", "testFixturesRuntimeOnly")
 }
 
 dependencies {
