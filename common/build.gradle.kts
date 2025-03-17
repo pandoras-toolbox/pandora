@@ -16,12 +16,12 @@ dependencies {
     apply(from = rootProject.file("buildSrc/junit.gradle.kts"))
 
     testFixturesImplementation("com.tngtech.archunit:archunit:${Version.ARCH_UNIT}")
-    testFixturesImplementation("org.apache.commons:commons-configuration2:${Version.COMMON_CONFIGURATION_2}")
-    testFixturesImplementation("com.fasterxml.jackson.core:jackson-core:${Version.JACKSON}")
-    testFixturesImplementation("com.fasterxml.jackson.core:jackson-annotations:${Version.JACKSON}")
+    testFixturesImplementation("org.apache.commons:commons-configuration2:2.11.0")
     testFixturesImplementation("com.fasterxml.jackson.core:jackson-databind:${Version.JACKSON}")
     testFixturesImplementation("org.apache.commons:commons-jexl3:3.4.0")
+}
 
-    // TODO Needed?
-    testFixturesRuntimeOnly("commons-beanutils:commons-beanutils:1.10.1")
+tasks.withType<JavaExec> {
+    // https://logging.apache.org/log4j/2.x/manual/installation.html#impl-core-bridge-jul
+    systemProperty("java.util.logging.manager", "org.apache.logging.log4j.jul.LogManager")
 }

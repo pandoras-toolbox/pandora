@@ -1,8 +1,10 @@
 package box.pandora.common;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-final class CommonArchitectureTest {
+@Tag(CommonTag.ARCHITECTURE)
+final class ArchitectureTest {
 
     @Test
     void checkArchitecture() {

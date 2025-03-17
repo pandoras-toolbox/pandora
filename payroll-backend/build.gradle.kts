@@ -1,23 +1,10 @@
 import box.pandora.Version
 
 plugins {
-    java
     id("org.springframework.boot") version "3.4.3"
     // https://github.com/springdoc/springdoc-openapi-gradle-plugin
     id("org.springdoc.openapi-gradle-plugin") version "1.9.0"
     id("io.spring.dependency-management") version "1.1.7"
-}
-
-group = "box.pandora"
-version = Version.PANDORA
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
-
-repositories {
-    mavenCentral()
 }
 
 configurations.all {

@@ -1,10 +1,9 @@
 import box.pandora.ParallelExecutionConfig
-import box.pandora.Version
 
 val scope: String = project.extra["scopeJUnit"] as String
 
 dependencies {
-    add(scope, platform("org.junit:junit-bom:${Version.JUNIT}"))
+    add(scope, platform("org.junit:junit-bom:5.12.1"))
     add(scope, "org.junit.jupiter:junit-jupiter")
 }
 

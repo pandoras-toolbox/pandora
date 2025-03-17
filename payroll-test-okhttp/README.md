@@ -11,8 +11,8 @@ Examples how to start the tests on command-line:
 
 ```shell
 ./gradlew --project-dir payroll-test-okhttp clean test
+./gradlew --project-dir payroll-test-okhttp clean test -PexcludedTags=architecture
 ./gradlew --project-dir payroll-test-okhttp clean test -PincludedTags=fast
-./gradlew --project-dir payroll-test-okhttp clean test -PexcludedTags=smoke
 ./gradlew --project-dir payroll-test-okhttp clean test -PincludedTags=main -PexcludedTags=slow,flaky
 ```
 

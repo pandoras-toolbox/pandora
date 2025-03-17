@@ -3,9 +3,11 @@ package box.pandora.payroll_test_gatling;
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.library.GeneralCodingRules;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-final class GatlingArchitectureTest {
+@Tag("architecture")
+final class ArchitectureTest {
 
     @Test
     void checkArchitecture() {
