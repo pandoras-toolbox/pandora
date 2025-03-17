@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 final class ArchitectureTest {
 
     @Test
-    void checkArchitecture() {
+    void check() {
         var watchDog = new ArchitectureWatchDog(getClass().getPackageName());
         watchDog.checkGeneralCodingRules();
         watchDog.checkCommonRules();

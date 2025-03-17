@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 final class ArchitectureTest {
 
     @Test
-    void checkArchitecture() {
+    void check() {
         var javaClasses = new ClassFileImporter().importPackages(getClass().getPackageName());
         checkGeneralCodingRules(javaClasses);
     }

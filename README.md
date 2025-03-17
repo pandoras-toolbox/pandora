@@ -62,6 +62,12 @@ If you are using this project from IntelliJ, the suggested 3rd party plugins are
 * Rainbow Brackets
 * JSON Sorter
 
+## Running All Architecture Tests
+
+```shell
+./gradlew test -PincludedTags=architecture
+```
+
 ## Versions Checking
 
 Check which versions of the dependencies can be updated from time to time with the
