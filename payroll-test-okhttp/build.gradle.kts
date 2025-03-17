@@ -1,4 +1,6 @@
-import box.pandora.Version
+plugins {
+    id("io.qameta.allure") version "2.12.0"
+}
 
 ext {
     set("scopeJUnit", "testImplementation")
@@ -6,7 +8,17 @@ ext {
 
 dependencies {
     apply(from = rootProject.file("buildSrc/junit.gradle.kts"))
+    apply(from = rootProject.file("buildSrc/allure.gradle.kts"))
+    apply(plugin = "io.qameta.allure")
     testImplementation(testFixtures(project(":functional-test")))
-    testImplementation("com.google.guava:guava:${Version.GUAVA}")
-    testImplementation("org.apache.commons:commons-lang3:${Version.COMMONS_LANG_3}")
+}
+
+allure {
+    adapter {
+        frameworks {
+            junit5 {
+                enabled.set(true)
+            }
+        }
+    }
 }

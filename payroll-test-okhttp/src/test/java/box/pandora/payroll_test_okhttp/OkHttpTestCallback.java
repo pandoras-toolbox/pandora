@@ -10,7 +10,7 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 
 import java.util.Map;
 
-public final class PayrollApiTestCallback extends BaseCallback implements BeforeTestExecutionCallback {
+public final class OkHttpTestCallback extends BaseCallback implements BeforeTestExecutionCallback {
 
     private static final Logger LOGGER = LogManager.getLogger();
 

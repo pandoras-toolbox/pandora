@@ -1,9 +1,12 @@
-package box.pandora.payroll_test_okhttp;
+package box.pandora.payroll_test_playwright;
 
 import box.pandora.common.ArchitectureWatchDog;
+import box.pandora.common.CommonTag;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-final class OkHttpArchitectureTest {
+@Tag(CommonTag.ARCHITECTURE)
+final class ArchitectureTest {
 
     @Test
     void checkArchitecture() {

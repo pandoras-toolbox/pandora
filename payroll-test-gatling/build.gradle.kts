@@ -1,15 +1,7 @@
 import box.pandora.Version
 
 plugins {
-    id("java")
     id("io.gatling.gradle") version "3.13.5"
-}
-
-group = "box.pandora"
-version = Version.PANDORA
-
-repositories {
-    mavenCentral()
 }
 
 configurations.all {

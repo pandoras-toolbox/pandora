@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Epic("Payroll")
 @Feature("Employee")
-@ExtendWith(PayrollApiTestCallback.class)
+@ExtendWith(OkHttpTestCallback.class)
 final class EmployeeCrudTest {
 
     @Story("Add, get and delete employee")
