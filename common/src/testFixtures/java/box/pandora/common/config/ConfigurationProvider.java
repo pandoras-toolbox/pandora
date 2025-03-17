@@ -32,7 +32,7 @@ public enum ConfigurationProvider {
     private final Configuration configuration;
 
     ConfigurationProvider() {
-        configuration = createConfiguration("config/common.properties");
+        configuration = createConfiguration();
     }
 
     public Configuration getConfiguration() {
@@ -40,8 +40,9 @@ public enum ConfigurationProvider {
     }
 
     // https://www.baeldung.com/apache-commons-configuration#2-using-expressions
-    private Configuration createConfiguration(String propertyFileName) {
+    private Configuration createConfiguration() {
         var logger = LogManager.getLogger();
+        var propertyFileName = "config/common.properties";
         logger.info("Creating properties from file: {}", propertyFileName);
         Configuration config;
         var prefixLookups = new HashMap<>(ConfigurationInterpolator.getDefaultPrefixLookups());
@@ -62,7 +63,7 @@ public enum ConfigurationProvider {
         return config;
     }
 
-    private String asPrettyJson(Configuration configuration) {
+    private static String asPrettyJson(Configuration configuration) {
         Iterable<String> iterable = configuration::getKeys;
         var treeMap = new TreeMap<>();
         StreamSupport.stream(iterable.spliterator(), false)

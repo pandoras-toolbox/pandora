@@ -2,7 +2,7 @@
 
 **Status:** _5% complete_
 
-This is a end-to-end test automation framework. Its approach is deliberately very programmatic in nature.
+This is an end-to-end test automation framework. Its approach is deliberately very programmatic in nature.
 
 In this project there is an example application, one with REST APIs, but we will also create a frontend for it.
 
@@ -13,6 +13,8 @@ install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) and use it 
 
 Please take a look at these sub-readmes:
 
+* [common](common/README.md)
+* [functional-test](functional-test/README.md)
 * [payroll-test-gatling](payroll-test-gatling/README.md)
 * [payroll-test-okhttp](payroll-test-okhttp/README.md)
 * [payroll-test-playwright](payroll-test-playwright/README.md)

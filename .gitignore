@@ -47,7 +47,9 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
-.idea
+.idea/*
+!.idea/codeStyles/
+!.idea/inspectionProfiles/
 *.iws
 *.iml
 *.ipr

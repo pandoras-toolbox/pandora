@@ -2,6 +2,12 @@
 
 ## Decisions
 
+**Kotlin DSL**
+
+The default [is now Kotlin DSL](https://blog.gradle.org/kotlin-dsl-is-now-the-default-for-new-gradle-builds).
+
+Also, to learn using Kotlin and be familiar with it is much more useful than with Groovy.
+
 **Java**
 
 I am most familiar with [Java](https://www.java.com/), so I have chosen it, and I think it is a great programming

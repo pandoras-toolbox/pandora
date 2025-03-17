@@ -10,11 +10,12 @@ import okhttp3.RequestBody;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 public final class OrderClient {
 
-    OrderClient() {
+    private OrderClient() {
     }
 
     @Step
@@ -75,7 +76,7 @@ public final class OrderClient {
                                 .addPathSegment("employees")
                                 .build())
                         .header("Content-Type", "application/json")
-                        .post(RequestBody.create(json.getBytes()))
+                        .post(RequestBody.create(json.getBytes(StandardCharsets.UTF_8)))
                         .build())
                 .execute()) {
             return HttpResponse.fromOkHttpResponse(response);

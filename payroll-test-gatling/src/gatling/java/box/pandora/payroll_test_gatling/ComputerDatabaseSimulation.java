@@ -8,7 +8,15 @@ import io.gatling.javaapi.http.HttpProtocolBuilder;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import static io.gatling.javaapi.core.CoreDsl.*;
+import static io.gatling.javaapi.core.CoreDsl.css;
+import static io.gatling.javaapi.core.CoreDsl.csv;
+import static io.gatling.javaapi.core.CoreDsl.exec;
+import static io.gatling.javaapi.core.CoreDsl.feed;
+import static io.gatling.javaapi.core.CoreDsl.pause;
+import static io.gatling.javaapi.core.CoreDsl.rampUsers;
+import static io.gatling.javaapi.core.CoreDsl.repeat;
+import static io.gatling.javaapi.core.CoreDsl.scenario;
+import static io.gatling.javaapi.core.CoreDsl.tryMax;
 import static io.gatling.javaapi.http.HttpDsl.http;
 import static io.gatling.javaapi.http.HttpDsl.status;
 
@@ -19,6 +27,8 @@ import static io.gatling.javaapi.http.HttpDsl.status;
  *   <li><a href="https://docs.gatling.io/tutorials/advanced/">Gatling advanced tutorial</a>
  * </ul>
  */
+// Prevent SonarQube warning: Only static class initializers should be used
+@SuppressWarnings("java:S1171")
 public class ComputerDatabaseSimulation extends Simulation {
 
     FeederBuilder<String> feeder = csv("csv/search.csv").random();
