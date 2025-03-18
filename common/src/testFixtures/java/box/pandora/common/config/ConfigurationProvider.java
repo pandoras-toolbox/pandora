@@ -40,7 +40,7 @@ public enum ConfigurationProvider {
     }
 
     // https://www.baeldung.com/apache-commons-configuration#2-using-expressions
-    private Configuration createConfiguration() {
+    private static Configuration createConfiguration() {
         var logger = LogManager.getLogger();
         var propertyFileName = "config/common.properties";
         logger.info("Creating properties from file: {}", propertyFileName);

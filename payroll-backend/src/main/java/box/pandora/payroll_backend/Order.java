@@ -62,10 +62,10 @@ class Order {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
-        } else if (!(o instanceof Order order)) {
+        } else if (!(obj instanceof Order order)) {
             return false;
         } else {
             return Objects.equals(id, order.id) && Objects.equals(description, order.description)

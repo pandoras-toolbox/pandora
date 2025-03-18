@@ -18,17 +18,17 @@ public enum AllureEnvironment {
 
     private boolean created;
 
-    public synchronized void createEnvironmentXml() {
+    public void createEnvironmentXml() {
         createEnvironmentXml(Map.of());
     }
 
-    public synchronized void createEnvironmentXml(Map<String, String> moduleSpecificProperties) {
+    public void createEnvironmentXml(Map<String, String> additionalProperties) {
         if (created) {
             LOGGER.debug("Not creating Allure environments XML file because it has already been created");
         } else {
             LOGGER.debug("Creating Allure environments XML file for the Allure report");
             var mapBuilder = ImmutableMap.<String, String>builder()
-                    .putAll(moduleSpecificProperties);
+                    .putAll(additionalProperties);
             var includedTags = System.getProperty("includedTags");
             if (!StringUtils.isEmpty(includedTags)) {
                 mapBuilder.put("Included Tags", includedTags);

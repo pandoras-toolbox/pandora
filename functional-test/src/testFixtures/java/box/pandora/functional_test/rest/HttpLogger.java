@@ -114,12 +114,15 @@ public final class HttpLogger implements HttpLoggingInterceptor.Logger {
     }
 
     private void log(String description, StringBuffer message, StringBuffer prettyMessage, int maximumLength) {
-        var effectiveMessage = prettyLogging ? prettyMessage : message;
-        var abbreviatedMessage = StringUtils.abbreviate(effectiveMessage.toString(), LoggingConfig.abbreviationMarker(), maximumLength);
-        LOGGER.info("{}:{}{}",
-                description, prettyLogging ? System.lineSeparator() : " ", abbreviatedMessage);
-        Allure.addAttachment(description, prettyMessage.toString());
-        resetRequestsAndResponses();
+        try {
+            var effectiveMessage = prettyLogging ? prettyMessage : message;
+            var abbreviatedMessage = StringUtils.abbreviate(effectiveMessage.toString(), LoggingConfig.abbreviationMarker(), maximumLength);
+            LOGGER.info("{}:{}{}",
+                    description, prettyLogging ? System.lineSeparator() : " ", abbreviatedMessage);
+            Allure.addAttachment(description, prettyMessage.toString());
+        } finally {
+            resetRequestsAndResponses();
+        }
     }
 
     private void resetRequestsAndResponses() {

@@ -81,10 +81,10 @@ class Employee {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
-        } else if (!(o instanceof Employee employee)) {
+        } else if (!(obj instanceof Employee employee)) {
             return false;
         } else {
             return Objects.equals(id, employee.id) && Objects.equals(firstName, employee.firstName)

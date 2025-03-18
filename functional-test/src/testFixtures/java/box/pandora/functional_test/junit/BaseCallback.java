@@ -35,7 +35,7 @@ public class BaseCallback implements BeforeEachCallback, AfterEachCallback {
         LOGGER.info("Test '{}' took {}",
                 JunitUtil.createTestName(context),
                 BaseUtil.formatDurationWords(Duration.ofMillis(System.currentTimeMillis() - getTestStartTime().orElseThrow().toEpochMilli())));
-        ThreadLocalsRegistry.remove();
+        ThreadLocalsRegistry.INSTANCE.remove();
     }
 
     public static Optional<Instant> getTestStartTime() {

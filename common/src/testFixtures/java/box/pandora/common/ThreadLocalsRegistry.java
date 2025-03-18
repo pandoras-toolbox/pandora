@@ -3,14 +3,11 @@ package box.pandora.common;
 import java.util.ArrayList;
 import java.util.List;
 
-// Prevent SonarQube warning: "ThreadLocal" variables should be cleaned up when no longer used
-@SuppressWarnings("java:S5164")
-public final class ThreadLocalsRegistry {
+public enum ThreadLocalsRegistry {
 
-    private static final List<ThreadLocal<?>> THREAD_LOCALS = new ArrayList<>();
+    INSTANCE;
 
-    private ThreadLocalsRegistry() {
-    }
+    private final List<ThreadLocal<?>> threadLocals = new ArrayList<>();
 
     /**
      * Registers {@link ThreadLocal} objects in use so that their values can be removed via the {@link #remove()} method.
@@ -21,13 +18,13 @@ public final class ThreadLocalsRegistry {
      * @param threadLocal ThreadLocal to register
      * @return the input ThreadLocal
      */
-    public static synchronized <T> ThreadLocal<T> register(ThreadLocal<T> threadLocal) {
-        THREAD_LOCALS.add(threadLocal);
+    public <T> ThreadLocal<T> register(ThreadLocal<T> threadLocal) {
+        threadLocals.add(threadLocal);
         return threadLocal;
     }
 
-    public static synchronized void remove() {
-        for (var threadLocal : THREAD_LOCALS) {
+    public void remove() {
+        for (var threadLocal : threadLocals) {
             threadLocal.remove();
         }
     }

@@ -11,7 +11,7 @@ dependencies {
     apply(from = rootProject.file("buildSrc/junit.gradle.kts"))
     apply(from = rootProject.file("buildSrc/allure.gradle.kts"))
     testImplementation(testFixtures(project(":functional-test")))
-    testImplementation("com.microsoft.playwright:playwright:1.50.0")
+    testImplementation("com.microsoft.playwright:playwright:1.50.1")
 }
 
 allure {
