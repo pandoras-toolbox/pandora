@@ -20,7 +20,7 @@ dependencies {
     testFixturesApi("org.assertj:assertj-core:3.27.3")
     testFixturesApi(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
     testFixturesApi("com.squareup.okhttp3:okhttp")
-    testFixturesApi("com.google.guava:guava:33.4.0-jre")
+    testFixturesApi("com.google.guava:guava:33.4.6-jre")
 
     testFixturesImplementation("io.qameta.allure:allure-assertj:${Version.ALLURE}")
     testFixturesImplementation("org.aspectj:aspectjrt:${Version.ASPECTJ}")

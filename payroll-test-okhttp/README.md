@@ -2,10 +2,10 @@
 
 **Status:** _5% complete_
 
-This module contains functional end-to-end API tests for the [payroll-backend](../payroll-backend/README.md)
+This module contains functional end-to-end API tests for the [payroll-server](../payroll-server/README.md)
 application.
 
-The payroll backend application must be started before the tests in this module can be run.
+The payroll server application must be started before the tests in this module can be run.
 
 Examples how to start the tests on command-line:
 

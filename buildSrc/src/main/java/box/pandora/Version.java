@@ -7,6 +7,7 @@ public final class Version {
     public static final String ARCH_UNIT = "1.4.0";
     public static final String JACKSON = "2.18.3";
     public static final String LOG4J = "2.24.3";
+    public static final String SPRING = "3.4.4";
 
     private Version() {
     }

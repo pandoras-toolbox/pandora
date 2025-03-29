@@ -1,7 +1,7 @@
 import box.pandora.Version
 
 plugins {
-    id("io.gatling.gradle") version "3.13.5"
+    id("io.gatling.gradle") version "3.13.5.1"
 }
 
 configurations.all {

@@ -8,7 +8,6 @@ import okhttp3.HttpUrl;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
@@ -59,7 +58,7 @@ public final class OrderClient {
     }
 
     @Step
-    public static HttpResponse addEmployee(String name, String role, @Nullable UUID id) {
+    public static HttpResponse addEmployee(String name, String role, UUID id) {
         String json;
         if (id == null) {
             json = """
