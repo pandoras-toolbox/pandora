@@ -33,7 +33,7 @@ The log output of Gatling can be configured in: [logback.xml](src/gatling/resour
 
 Do **_not_** use OkHttp (or similar libraries) from within Gatling simulations!
 
-It is bad to mix them together because of several reasons:
+It is bad to mix them because of several reasons:
 
 * OkHttp is *not* made for load testing.
 * Gatling does not know anything of requests executed with OkHttp.

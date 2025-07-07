@@ -9,7 +9,7 @@ plugins {
     // https://github.com/springdoc/springdoc-openapi-gradle-plugin
     id("org.springdoc.openapi-gradle-plugin") version "1.9.0"
     id("io.spring.dependency-management") version "1.1.7"
-    id("org.openapi.generator") version "7.12.0"
+    id("org.openapi.generator") version "7.14.0"
 }
 
 configurations.all {
@@ -32,7 +32,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:${Version.SPRING}")
     implementation("org.springframework.boot:spring-boot-starter-validation:${Version.SPRING}")
     implementation("org.springframework.boot:spring-boot-starter-hateoas:${Version.SPRING}")
-    val springdocVersion = "2.8.6"
+    val springdocVersion = "2.8.9"
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$springdocVersion")
     implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:$springdocVersion") {
         because("https://www.baeldung.com/spring-rest-openapi-documentation#settingupwithspringwebflux")

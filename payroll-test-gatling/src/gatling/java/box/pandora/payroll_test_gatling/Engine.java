@@ -11,7 +11,7 @@ public final class Engine {
         // There is also --launcher and --build-tool-version, but we do not know what they are good for.
         Gatling.main(new String[]{
                 // A name of a Simulation class to run.
-                "--simulation", ComputerDatabaseSimulation.class.getName(),
+                "--simulation", BasicSimulation.class.getName(),
                 // Use this folder as the folder where results are stored.
                 "--results-folder", "payroll-load-test/build/reports",
                 // A short description of the run to include in the report.
