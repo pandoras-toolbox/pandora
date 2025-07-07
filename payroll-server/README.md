@@ -11,7 +11,7 @@ There is also a [REST tutorial](https://spring.io/guides/tutorials/rest) from Sp
 
 What was changed:
 
-* add ability to set the ID (UUID) when creating new employees and orders, useful for testing
+* add the ability to set the ID (UUID) when creating new employees and orders, useful for testing
 
 How to run the app:
 
