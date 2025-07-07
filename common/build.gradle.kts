@@ -17,9 +17,9 @@ dependencies {
     apply(from = rootProject.file("buildSrc/junit.gradle.kts"))
 
     testFixturesImplementation("com.tngtech.archunit:archunit:${Version.ARCH_UNIT}")
-    testFixturesImplementation("org.apache.commons:commons-configuration2:2.11.0")
+    testFixturesImplementation("org.apache.commons:commons-configuration2:2.12.0")
     testFixturesImplementation("com.fasterxml.jackson.core:jackson-databind:${Version.JACKSON}")
-    testFixturesImplementation("org.apache.commons:commons-jexl3:3.4.0")
+    testFixturesImplementation("org.apache.commons:commons-jexl3:3.5.0")
 }
 
 tasks.withType<JavaExec> {

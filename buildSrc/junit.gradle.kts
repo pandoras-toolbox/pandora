@@ -4,7 +4,7 @@ val scopeJUnit: String = project.extra["scopeJUnit"] as String
 val scopeJUnitPlatformLauncher: String = project.extra["scopeJUnitPlatformLauncher"] as String
 
 dependencies {
-    add(scopeJUnit, platform("org.junit:junit-bom:5.12.1"))
+    add(scopeJUnit, platform("org.junit:junit-bom:5.13.3"))
     add(scopeJUnit, "org.junit.jupiter:junit-jupiter")
     add(scopeJUnitPlatformLauncher, "org.junit.platform:junit-platform-launcher")
 }
