@@ -40,6 +40,12 @@ dependencies {
 
     runtimeOnly("com.h2database:h2:2.3.232")
 
+    implementation("javax.annotation:javax.annotation-api:1.3.2")
+    implementation("javax.validation:validation-api:2.0.1.Final")
+
+    implementation("org.openapitools:jackson-databind-nullable:0.2.6")
+    implementation("javax.servlet:javax.servlet-api:4.0.1")
+
     apply(from = rootProject.file("buildSrc/junit.gradle.kts"))
     testImplementation("com.tngtech.archunit:archunit:${Version.ARCH_UNIT}")
 }
@@ -50,12 +56,6 @@ openApi {
     apiDocsUrl.set("http://localhost:8080/v3/api-docs.yaml")
     outputDir.set(file("${layout.buildDirectory.get().asFile}/docs"))
     outputFileName.set("openapi.yaml")
-    java {
-        toolchain {
-            // Target Java 17 to prevent a compile error for some reason:
-            languageVersion.set(JavaLanguageVersion.of(17))
-        }
-    }
 }
 
 tasks.withType<Test> {
@@ -69,6 +69,7 @@ tasks.withType<Test> {
 fun registerOpenApiTask(
     taskName: String,
     generatorName: String,
+    libraryName: String?,
     groupName: String,
     descriptionName: String,
     outputDirName: String,
@@ -83,37 +84,48 @@ fun registerOpenApiTask(
         apiPackage.set("${packageName}.api")
         invokerPackage.set("${packageName}.invoker")
         modelPackage.set("${packageName}.model")
-        configOptions.set(
-            mapOf(
-                "library" to "retrofit2"
-            )
-        )
+        library.set(libraryName)
     }
 }
 
 registerOpenApiTask(
+    // The generated code is used only as a starting point for implementation.
+    taskName = "generateServer",
+    generatorName = "spring",
+    libraryName = "spring-boot",
+    groupName = "openapi",
+    descriptionName = "Generates the OpenAPI Java server for this project.",
+    outputDirName = "${layout.buildDirectory.get()}/generated/server",
+    packageName = "box.pandora.petstore_server"
+)
+
+registerOpenApiTask(
     taskName = "generateClient",
     generatorName = "java",
+    libraryName = "retrofit2",
     groupName = "openapi",
     descriptionName = "Generates the OpenAPI Java client for this project.",
-    outputDirName = "$rootDir/payroll-client",
-    packageName = "box.pandora.payroll_client"
+    outputDirName = "${layout.buildDirectory.get()}/generated/client",
+    packageName = "box.pandora.petstore_client"
 )
 
 registerOpenApiTask(
     taskName = "generateDocs",
     generatorName = "html2",
+    libraryName = null,
     groupName = "openapi",
     descriptionName = "Generates the OpenAPI HTML2 docs for this project.",
-    outputDirName = "$rootDir/payroll-server/openapi-docs",
-    packageName = "box.pandora.payroll_client"
+    outputDirName = "${layout.buildDirectory.get()}/generated/openapi-docs",
+    packageName = "box.pandora.petstore_client"
 )
 
 tasks.register("generateAll") {
     group = "openapi"
-    description = "Generates the OpenAPI client and documentation for this project."
+    description = "Generates the OpenAPI server, client and documentation for this project."
     dependsOn(
+        tasks.named("generateServer"),
         tasks.named("generateClient"),
         tasks.named("generateDocs")
     )
 }
+

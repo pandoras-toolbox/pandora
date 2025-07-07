@@ -3,8 +3,8 @@ info:
   title: OpenAPI definition
   version: v0
 servers:
-- description: Generated server url
-  url: http://localhost:8080
+  - description: Generated server url
+    url: http://localhost:8080
 paths:
   /:
     get:
@@ -23,7 +23,7 @@ paths:
                 type: string
           description: Not Found
       tags:
-      - root-controller
+        - root-controller
   /employees:
     get:
       operationId: getEmployees
@@ -42,7 +42,7 @@ paths:
           description: Not Found
       summary: Get all employees
       tags:
-      - employee-controller
+        - employee-controller
     post:
       operationId: createNewEmployee
       requestBody:
@@ -66,17 +66,17 @@ paths:
           description: Not Found
       summary: Create new employee
       tags:
-      - employee-controller
+        - employee-controller
   /employees/{id}:
     delete:
       operationId: deleteEmployee
       parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-          format: uuid
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            format: uuid
       responses:
         "200":
           content:
@@ -92,16 +92,16 @@ paths:
           description: Not Found
       summary: Delete employee by ID
       tags:
-      - employee-controller
+        - employee-controller
     get:
       operationId: getEmployee
       parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-          format: uuid
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            format: uuid
       responses:
         "200":
           content:
@@ -117,16 +117,16 @@ paths:
           description: Not Found
       summary: Get employee by ID
       tags:
-      - employee-controller
+        - employee-controller
     put:
       operationId: replaceEmployee
       parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-          format: uuid
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            format: uuid
       requestBody:
         content:
           application/json:
@@ -148,7 +148,7 @@ paths:
           description: Not Found
       summary: Replace employee by ID
       tags:
-      - employee-controller
+        - employee-controller
   /orders:
     get:
       operationId: getOrders
@@ -167,7 +167,7 @@ paths:
           description: Not Found
       summary: Get all orders
       tags:
-      - order-controller
+        - order-controller
     post:
       operationId: createNewOrder
       requestBody:
@@ -191,17 +191,17 @@ paths:
           description: Not Found
       summary: Create new order
       tags:
-      - order-controller
+        - order-controller
   /orders/{id}:
     get:
       operationId: getOrder
       parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-          format: uuid
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            format: uuid
       responses:
         "200":
           content:
@@ -217,17 +217,17 @@ paths:
           description: Not Found
       summary: Get order by ID
       tags:
-      - order-controller
+        - order-controller
   /orders/{id}/cancel:
     delete:
       operationId: cancelOrder
       parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-          format: uuid
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            format: uuid
       responses:
         "200":
           content:
@@ -243,17 +243,17 @@ paths:
           description: Not Found
       summary: Cancel order by ID
       tags:
-      - order-controller
+        - order-controller
   /orders/{id}/complete:
     put:
       operationId: completeOrder
       parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-          format: uuid
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            format: uuid
       responses:
         "200":
           content:
@@ -269,7 +269,7 @@ paths:
           description: Not Found
       summary: Complete order by ID
       tags:
-      - order-controller
+        - order-controller
 components:
   schemas:
     CollectionModelEntityModelEmployee:
@@ -311,8 +311,8 @@ components:
         role:
           type: string
       required:
-      - firstName
-      - lastName
+        - firstName
+        - lastName
     EntityModelEmployee:
       type: object
       properties:
@@ -330,8 +330,8 @@ components:
         role:
           type: string
       required:
-      - firstName
-      - lastName
+        - firstName
+        - lastName
     EntityModelOrder:
       type: object
       properties:
@@ -345,11 +345,11 @@ components:
         status:
           type: string
           enum:
-          - IN_PROGRESS
-          - COMPLETED
-          - CANCELLED
+            - IN_PROGRESS
+            - COMPLETED
+            - CANCELLED
       required:
-      - status
+        - status
     Link:
       type: object
       properties:
@@ -384,11 +384,11 @@ components:
         status:
           type: string
           enum:
-          - IN_PROGRESS
-          - COMPLETED
-          - CANCELLED
+            - IN_PROGRESS
+            - COMPLETED
+            - CANCELLED
       required:
-      - status
+        - status
     OrderResponse:
       type: object
       properties:

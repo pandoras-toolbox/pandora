@@ -15,21 +15,21 @@ language. But maybe we will try out to use Kotlin for programming.
 
 **Gradle**
 
-In my opinion [Gradle](https://gradle.org/) is better than [Maven](https://maven.apache.org/) and more actively and
+In my opinion, [Gradle](https://gradle.org/) is better than [Maven](https://maven.apache.org/) and more actively and
 continuously improved, although it is still not so much adopted as you would expect.
 
 **JUnit 5**
 
-[JUnit 5](https://junit.org/junit5/docs/current/user-guide/) is a well-designed test framework which supports nearly
+[JUnit 5](https://junit.org/junit5/docs/current/user-guide/) is a well-designed test framework that supports nearly
 everything you need, also for end-to-end test purposes.
 
 **Allure**
 
-The free variant of [Allure](http://allure.qatools.ru/) is nearly the best tool to create very useful test result
+The free variant of [Allure](http://allure.qatools.ru/) is nearly the best tool to create invaluable test result
 reports. Only the paid variant "Allure TestOps" is better.
 
 The integration of Allure with JUnit 5 is great. Compared to other frameworks like [Cucumber](https://cucumber.io/),
-with Allure and its flexible way of behavior-driven development the test reports are much more useful.
+with Allure and its flexible way of behavior-driven development, the test reports are much more useful.
 
 And there is no layer in a foreign language (Gherkin DSL) when using Allure because all tests can be automated by using
 only a single programming language.

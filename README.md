@@ -4,9 +4,9 @@
 
 This is an end-to-end test automation framework. Its approach is deliberately very programmatic in nature.
 
-In this project there is an example application, one with REST APIs, but we will also create a frontend for it.
+In this project, there is an example application, one with REST APIs, but we will also create a frontend for it.
 
-The command-line commands will be explained for Linux and macOS. If you are a Windows user we recommend that you
+The command-line commands will be explained for Linux and macOS. If you are a Windows user, we recommend that you
 install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) and use it for this project.
 
 ## How to Use
@@ -22,12 +22,12 @@ Please take a look at these sub-readmes:
 ## Purpose
 
 * show how selected open source tools can be chosen to create a useful test automation tool
-* be an example for a programmatic approach to automation
+* be an example of a programmatic approach to automation
 * illustrate some newer technologies if they are better than previous ones
 * demonstrate helpful techniques regarding test automation and the tooling for it
 * serve as an initial template for a new test automation tool
 * try out new libraries and approaches
-* use it as a reference of craftsmanship
+* use it as a reference to craftsmanship
 
 ## Features
 
@@ -54,7 +54,7 @@ It might change, but this is currently not planned:
 * integration with Elasticsearch.
 * test automation for mobile apps
 
-## Suggested 3rd Party Plugins IntelliJ
+## Suggested 3rd Party Plugins for IntelliJ
 
 If you are using this project from IntelliJ, the suggested 3rd party plugins are:
 
